@@ -17,11 +17,13 @@ namespace ChapterTwo
 
         static void Main(string[] args)
         {
+
             ParallelInvoke();
             ParallelInvokeCheck();
             ParallelInvokeCheck2();
             ParallelInvokeCheck3();
             ParallelForEachGenerateMD5HashesBreak();
+            ParallelForEachGenerateMD5HashesException();
             Console.ReadKey();
         }
 
@@ -258,6 +260,14 @@ namespace ChapterTwo
             Console.WriteLine(text);
         }
 
+        /* 理解 ParallelLoopState 该类实例提供了以下两个方法用于停止Parallel.For和Parallel.ForEach的执行
+         * 
+         * 1    Break----这个方法告诉并行循环应该在执行了当前迭代之后尽快地停止执行，如果调用Break
+         *      时正在处理迭代100，那么循环仍然会处理所有小于100的迭代。
+         * 2    Stop----这个方法告诉并行循环应该尽快停止执行，如果调用Stop时迭代100正在被处理，
+         *      那么循环无法保证处理完所有小于100的迭代。
+         */ 
+
         static void ParallelForEachGenerateMD5HashesBreak()
         {
             Console.WriteLine("Begin ParallelForEachGenerateMD5HashesBreak");
@@ -265,7 +275,7 @@ namespace ChapterTwo
             var sw = Stopwatch.StartNew();
             var loopResult = Parallel.ForEach(inputData, (number, loopState) =>
             {
-                //if (loopState.ShouldExitCurrentIteration)
+                //if (loopState.ShouldExitCurrentIteration)  如果每次迭代时间较长，可以用这种方法早点结束循环
                 //    return;
 
                 var md5M = MD5.Create();
@@ -284,6 +294,64 @@ namespace ChapterTwo
             Console.WriteLine($"ParallelForEachGenerateMD5HashesBreak MD5: {sw.Elapsed.ToString()}");
         }
 
+
+        //并行异常处理
+        static void ParallelForEachGenerateMD5HashesException()
+        {
+            Console.WriteLine("     ParallelForEachGenerateMD5HashesException Begin");
+            var inputData = GenerateMD5InputData();
+            var sw = Stopwatch.StartNew();
+            var loopResult = new ParallelLoopResult();
+            try
+            {
+                loopResult = Parallel.ForEach(inputData, (number, loopState) =>
+                {
+                    //if (loopState.ShouldExitCurrentIteration)
+                    //    return;
+
+                    var md5M = MD5.Create();
+                    byte[] data = Encoding.Unicode.GetBytes(
+                        Environment.UserName + number.ToString());
+                    byte[] result = md5M.ComputeHash(data);
+                    string hexString = ConvertToHexString(result);
+                    if (sw.Elapsed.Seconds > 3)
+                    {
+                        throw new TimeoutException("Parallel.ForEach is taking more than 3s to complete");
+                    }
+                });
+            }
+            catch (AggregateException ex)
+            {
+                foreach (Exception innerEx in ex.InnerExceptions)
+                {
+                    Console.WriteLine(innerEx.ToString());
+                }
+            }
+            DisplayParallelLoopResult(loopResult);
+            Console.WriteLine($"ParallelForEachGenerateMD5HashesException MD5: {sw.Elapsed.ToString()}");
+        }
+
+
+        //指定Parallel.For循环的最大并行度，如果存在界面，则一般预留一个内核给UI线程
+        /* ParallelOptions还提供了以下两个属性来控制高级选项
+         * 
+         * 1    CancellationToken  用于传播取消并行操作的通知
+         * 2    TaskScheduler   通常来说不需要定义一个自定义的任务调度器来调度并行任务，
+         *      除非并行任务使用了非常特殊的算法，后文讲解TaskScheduler类的使用方法
+         * 
+         */
+        static void ParallelGenerateAESKeysMaxDegree(int maxDegree)
+        {
+            var parallelOptions = new ParallelOptions();
+            parallelOptions.MaxDegreeOfParallelism = maxDegree;
+            var sw = Stopwatch.StartNew();
+            Parallel.For(1, NUM_AES_KEYS + 1, parallelOptions, i =>
+              {
+                  var aesM = new AesManaged();
+                  byte[] result = aesM.Key;
+                  string kexString = ConvertToHexString(result);
+              });
+        }
 
         #endregion
     }
