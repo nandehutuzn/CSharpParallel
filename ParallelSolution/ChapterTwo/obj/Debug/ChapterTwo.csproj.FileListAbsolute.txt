@@ -1,0 +1,6 @@
+E:\VS2013\Github\Parallell\ParallelSolution\ChapterTwo\bin\Debug\ChapterTwo.exe.config
+E:\VS2013\Github\Parallell\ParallelSolution\ChapterTwo\bin\Debug\ChapterTwo.exe
+E:\VS2013\Github\Parallell\ParallelSolution\ChapterTwo\bin\Debug\ChapterTwo.pdb
+E:\VS2013\Github\Parallell\ParallelSolution\ChapterTwo\obj\Debug\ChapterTwo.csprojResolveAssemblyReference.cache
+E:\VS2013\Github\Parallell\ParallelSolution\ChapterTwo\obj\Debug\ChapterTwo.exe
+E:\VS2013\Github\Parallell\ParallelSolution\ChapterTwo\obj\Debug\ChapterTwo.pdb
