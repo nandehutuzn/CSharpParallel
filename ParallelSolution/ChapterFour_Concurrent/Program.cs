@@ -14,6 +14,7 @@ namespace ChapterFour_Concurrent
             Concurrent.ConcurrentTest();
             Concurrent.ConcurrentTest2();
             Concurrent.ConcurrentTest3();
+            ConcurrentBagTest.Test();
 
             Console.ReadKey();
         }
