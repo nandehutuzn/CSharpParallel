@@ -4,3 +4,9 @@ E:\VS2015\Practice\CSharpParallel\ParallelSolution\ChapterFour_Concurrent\bin\De
 E:\VS2015\Practice\CSharpParallel\ParallelSolution\ChapterFour_Concurrent\obj\Debug\ChapterFour_Concurrent.csprojResolveAssemblyReference.cache
 E:\VS2015\Practice\CSharpParallel\ParallelSolution\ChapterFour_Concurrent\obj\Debug\ChapterFour_Concurrent.exe
 E:\VS2015\Practice\CSharpParallel\ParallelSolution\ChapterFour_Concurrent\obj\Debug\ChapterFour_Concurrent.pdb
+E:\VS2013\Github\Parallell\ParallelSolution\ChapterFour_Concurrent\bin\Debug\ChapterFour_Concurrent.exe.config
+E:\VS2013\Github\Parallell\ParallelSolution\ChapterFour_Concurrent\bin\Debug\ChapterFour_Concurrent.exe
+E:\VS2013\Github\Parallell\ParallelSolution\ChapterFour_Concurrent\bin\Debug\ChapterFour_Concurrent.pdb
+E:\VS2013\Github\Parallell\ParallelSolution\ChapterFour_Concurrent\obj\Debug\ChapterFour_Concurrent.csprojResolveAssemblyReference.cache
+E:\VS2013\Github\Parallell\ParallelSolution\ChapterFour_Concurrent\obj\Debug\ChapterFour_Concurrent.exe
+E:\VS2013\Github\Parallell\ParallelSolution\ChapterFour_Concurrent\obj\Debug\ChapterFour_Concurrent.pdb
