@@ -10,6 +10,11 @@ namespace Chapter5
     {
         static void Main(string[] args)
         {
+            BarrierTest.Test();
+            BarrierTest.TestThrowException();
+            BarrierTest.TestTimeout();
+
+            Console.ReadKey();
         }
     }
 }
