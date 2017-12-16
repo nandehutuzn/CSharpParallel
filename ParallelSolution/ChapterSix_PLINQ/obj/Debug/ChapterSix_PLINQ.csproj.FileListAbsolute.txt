@@ -1,0 +1,6 @@
+E:\VS2013\Github\Parallell\ParallelSolution\ChapterSix_PLINQ\bin\Debug\ChapterSix_PLINQ.exe.config
+E:\VS2013\Github\Parallell\ParallelSolution\ChapterSix_PLINQ\bin\Debug\ChapterSix_PLINQ.exe
+E:\VS2013\Github\Parallell\ParallelSolution\ChapterSix_PLINQ\bin\Debug\ChapterSix_PLINQ.pdb
+E:\VS2013\Github\Parallell\ParallelSolution\ChapterSix_PLINQ\obj\Debug\ChapterSix_PLINQ.csprojResolveAssemblyReference.cache
+E:\VS2013\Github\Parallell\ParallelSolution\ChapterSix_PLINQ\obj\Debug\ChapterSix_PLINQ.exe
+E:\VS2013\Github\Parallell\ParallelSolution\ChapterSix_PLINQ\obj\Debug\ChapterSix_PLINQ.pdb

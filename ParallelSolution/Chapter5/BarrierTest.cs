@@ -156,7 +156,7 @@ namespace Chapter5
                     var participantNumber = (int)num;
                     for (int j = 0; j < 10; j++)
                     {
-                        CreatePlanets(participantNumber);
+                        CreatePlanets2(participantNumber);
                         if (!_barrier.SignalAndWait(TIMEOUT))
                         {
                             Console.WriteLine($"Participants are requiring more than {TIMEOUT} seconds to reach the barrier");
@@ -219,6 +219,74 @@ namespace Chapter5
             {
                 _barrier.Dispose();
             }
+        }
+
+        /// <summary>
+        /// 基于自旋的等待
+        /// </summary>
+        public static void BarrierAndSpinLockTest()
+        {
+            Console.WriteLine("BarrierAndSpinLockTest Begin");
+            _tasks = new Task[_participants];
+            _barrier = new Barrier(_participants, barrier => Console.WriteLine($"Current phase: {barrier.CurrentPhaseNumber}"));
+
+            //不要将SpinLock声明为自读字段，如果这么做的话，会导致每次调用这个字段都会返回
+            //SpinLock的一个新副本，而不是原始的那个，所有对Enter的方法调用都能成功获得锁
+            var sl = new SpinLock(false);
+            var sb = new StringBuilder();
+
+            for (int i = 0; i < _participants; i++)
+            {
+                _tasks[i] = Task.Factory.StartNew(num =>
+                {
+                    var participantNumber = (int)num;
+                    for (int j = 0; j < 10; j++)
+                    {
+                        CreatePlanets(participantNumber);
+                        _barrier.SignalAndWait();
+                        CreateStars(participantNumber);
+                        _barrier.SignalAndWait();
+                        CheckCollisionsBetweenPlanets(participantNumber);
+                        _barrier.SignalAndWait();
+                        CheckCollisionsBetweenStars(participantNumber);
+                        _barrier.SignalAndWait();
+                        RenderCollisions(participantNumber);
+                        _barrier.SignalAndWait();
+
+                        var logLine = $"Time: {DateTime.Now.TimeOfDay}, Phase: {_barrier.CurrentPhaseNumber}, Participant: {participantNumber}, Phase completed OK\n";
+                        bool lockTaken = false;
+                        try
+                        {
+                            //sl.Enter(ref lockTaken);
+                            //sb.Append(logLine);
+
+                            sl.TryEnter(2000, ref lockTaken);
+                            if (!lockTaken)
+                            {
+                                Console.WriteLine($"Lock timeout for participant: {participantNumber}");
+                                throw new TimeoutException($"Participant are requiring more than {2000} seconds to acquire the lock at the parse # {_barrier.CurrentPhaseNumber}");
+                            }
+                            sb.Append(logLine);
+                        }
+                        finally
+                        {
+                            if (lockTaken)
+                                sl.Exit(false);
+                        }
+                    }
+                }, i);
+            }
+
+            var finalTask = Task.Factory.ContinueWhenAll(_tasks, tasks =>
+            {
+                Console.WriteLine($"Enter ContinueWhenAll Time: {DateTime.Now.TimeOfDay}");
+                Task.WaitAll(_tasks);
+                Console.WriteLine($"All the phase were executed. Time: {DateTime.Now.TimeOfDay}");
+                Console.WriteLine(sb);
+                _barrier.Dispose();
+            });
+
+            finalTask.Wait();
         }
     }
 }

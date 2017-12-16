@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9578E0CC-FF9C-4325-9458-260199D588DB}</ProjectGuid>
+    <ProjectGuid>{60E5481A-66F6-48F4-BC68-AA7AB0F8A1B2}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Chapter5</RootNamespace>
-    <AssemblyName>Chapter5</AssemblyName>
+    <RootNamespace>ChapterSix_PLINQ</RootNamespace>
+    <AssemblyName>ChapterSix_PLINQ</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,13 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BarrierTest.cs" />
-    <Compile Include="CountdownEventTest.cs" />
-    <Compile Include="ManualResetEventSlimTest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SemaphoreSlimTest.cs" />
-    <Compile Include="SomeClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

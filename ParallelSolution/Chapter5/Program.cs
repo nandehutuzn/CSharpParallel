@@ -14,6 +14,12 @@ namespace Chapter5
             BarrierTest.TestThrowException();
             BarrierTest.TestTimeout();
 
+            BarrierTest.BarrierAndSpinLockTest();
+            ManualResetEventSlimTest.ManualResetEventSlimExample();
+
+            SemaphoreSlimTest.Test();
+            CountdownEventTest.Test();
+
             Console.ReadKey();
         }
     }
