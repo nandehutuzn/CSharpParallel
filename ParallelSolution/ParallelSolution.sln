@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chapter5", "Chapter5\Chapte
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChapterSix_PLINQ", "ChapterSix_PLINQ\ChapterSix_PLINQ.csproj", "{60E5481A-66F6-48F4-BC68-AA7AB0F8A1B2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chapter9_Async", "Chapter9_Async\Chapter9_Async.csproj", "{65DE8526-C02C-40C7-A999-331AF66DC7B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{60E5481A-66F6-48F4-BC68-AA7AB0F8A1B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60E5481A-66F6-48F4-BC68-AA7AB0F8A1B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60E5481A-66F6-48F4-BC68-AA7AB0F8A1B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65DE8526-C02C-40C7-A999-331AF66DC7B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65DE8526-C02C-40C7-A999-331AF66DC7B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65DE8526-C02C-40C7-A999-331AF66DC7B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65DE8526-C02C-40C7-A999-331AF66DC7B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
